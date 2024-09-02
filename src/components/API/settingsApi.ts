@@ -8,5 +8,5 @@ export const header = {
 };
 
 // Server deploy
-// export const BaseURL = 'https://gestinvest-1-c6d9743eb2ea.herokuapp.com/api/';
-export const BaseURL = 'http://localhost:5000/api/';
+export const BaseURL = 'https://gestinvest-back-39dbe349ad20.herokuapp.com/api/';
+// export const BaseURL = 'http://localhost:5000/api/';
