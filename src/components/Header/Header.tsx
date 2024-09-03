@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaPowerOff, FaTimes, FaUser } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/logo-gestinvest.svg';
 
@@ -29,25 +29,43 @@ function Header({ isConnected, openModal }: HeaderProps) {
   const content = (
     <div className={`${mobileMenuAnimationClasses} h-screen flex flex-col justify-center`}>
       <ul className="text-center text-xl ">
-        <a className="flex justify-center" href="/">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? 'underline underline-offset-8 flex justify-center' : 'flex justify-center'
+          }
+          to="/"
+          onClick={handleClick}
+        >
           <li className="w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">Accueil</li>
-        </a>
+        </NavLink>
         {/* <a className="flex justify-center" href="/Tendances">
           <li className=" w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">
             Tendances
           </li>
         </a> */}
         {isConnected && (
-          <a className="flex justify-center" href="/Dashboard">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? 'underline underline-offset-8 flex justify-center' : 'flex justify-center'
+            }
+            to="/Dashboard"
+            onClick={handleClick}
+          >
             <li className="w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">
               Tableau de bord
             </li>
-          </a>
+          </NavLink>
         )}
         {isConnected && (
-          <a className="flex justify-center" href="/Account">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? 'underline underline-offset-8 flex justify-center' : 'flex justify-center'
+            }
+            to="/Account"
+            onClick={handleClick}
+          >
             <li className="w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">Mon compte</li>
-          </a>
+          </NavLink>
         )}
       </ul>
     </div>
@@ -57,15 +75,15 @@ function Header({ isConnected, openModal }: HeaderProps) {
     <nav className="bg-[#101010] h-[10vh] sticky top-0 w-full z-50">
       <div className="flex h-[10vh] justify-between z-40 text-white  px-10 sm:px-20">
         <div className="flex items-center lg:hidden">
-          <a href="/">
+          <Link to="/">
             <img className="w-20 z-[1000]" src={logo} alt="logo Gestinvest" />
-          </a>
+          </Link>
         </div>
         <div className="lg:flex lg:flex-1 items-center justify-between font-normal hidden">
           <div className="flex items-center">
-            <a href="/">
+            <Link to="/">
               <img className="w-20 z-50" src={logo} alt="logo Gestinvest" />
-            </a>
+            </Link>
           </div>
           <div className="flex-10">
             <ul className="flex gap-8 text-[18px]">
