@@ -8,5 +8,5 @@ export const header = {
 };
 
 // Server deploy
-export const BaseURL = 'https://gestinvest-back-39dbe349ad20.herokuapp.com/api/';
+export const BaseURL = 'https://gest-invest-back-end.vercel.app/api/';
 // export const BaseURL = 'http://localhost:5000/api/';
