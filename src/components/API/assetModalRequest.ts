@@ -19,9 +19,9 @@ export const addBuyLine = async (formData: FormData) => {
     if (response.ok) {
       return true;
     }
+    const data = await response.json();
     console.error('Erreur de soummission des données');
-    const { errorMessage } = await response.json();
-    toast.error(errorMessage);
+    toast.error(data.message);
     return false;
   } catch (error) {
     console.error('Erreur de récupération des données', error);
@@ -39,9 +39,9 @@ export const addSellLine = async (formData: FormData) => {
     if (response.ok) {
       return true;
     }
+    const data = await response.json();
     console.error('Erreur de soummission des données');
-    const { errorMessage } = await response.json();
-    toast.error(errorMessage);
+    toast.error(data.message);
     return false;
   } catch (error) {
     console.error('Erreur de récupération des données', error);

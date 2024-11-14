@@ -12,8 +12,8 @@ interface DashboardProps {
   totalEstimatePortfolio: number;
   gainOrLossPourcent: number;
   gainOrLossMoney: number;
-  cryptoPourcent: number;
-  stockPourcent: number;
+  cryptoPercent: number;
+  stockPercent: number;
   gainOrLossTotalPortfolio: string | null;
   assetUserInformation: AssetUserInformation[];
 }
@@ -39,7 +39,7 @@ function Dashboard() {
     const fetchDashboardData = async () => {
       try {
         const data = await GetDashboard();
-        setDashboardData(data.userInformation);
+        setDashboardData(data);
       } catch (error) {
         console.error('Error fetching dashboard:', error);
       }
@@ -123,7 +123,7 @@ function Dashboard() {
                   datasets: [
                     {
                       label: 'Portfolio Composition',
-                      data: [dashboardData?.cryptoPourcent, dashboardData?.stockPourcent],
+                      data: [dashboardData?.cryptoPercent, dashboardData?.stockPercent],
                       backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
                       borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
                       borderWidth: 1,

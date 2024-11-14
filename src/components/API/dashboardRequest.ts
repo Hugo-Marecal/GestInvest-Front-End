@@ -9,7 +9,7 @@ const GetDashboard = async () => {
 
     const dataGetdashboard = await response.json();
     if (!response.ok) {
-      throw new Error(dataGetdashboard.errorMessage);
+      throw new Error(dataGetdashboard.message);
     }
     return dataGetdashboard;
   } catch (error) {

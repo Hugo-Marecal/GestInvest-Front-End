@@ -21,7 +21,7 @@ function Account() {
     const fetchAccountInfo = async () => {
       try {
         const data = await GetAccountInfo();
-        setUserData(data.user);
+        setUserData(data);
       } catch (error) {
         console.error('Error fetching account:', error);
       }
@@ -43,8 +43,9 @@ function Account() {
 
     try {
       const newData = await sendNewAccountInfo(userData);
+      console.log(userData);
       if (newData) {
-        setUserData(newData.userUpdated);
+        setUserData(newData);
       }
     } catch (error) {
       console.error('Erreur envoi des données:', error);
@@ -89,7 +90,7 @@ function Account() {
             type="text"
             id="first_name"
             name="first_name"
-            placeholder={userData.first_name}
+            placeholder={userData.first_name ? userData.first_name : 'prénom'}
             onChange={handleInputChange}
           />
         </div>
@@ -104,7 +105,7 @@ function Account() {
             type="text"
             id="last_name"
             name="last_name"
-            placeholder={userData.last_name}
+            placeholder={userData.last_name ? userData.last_name : 'nom'}
             onChange={handleInputChange}
           />
         </div>

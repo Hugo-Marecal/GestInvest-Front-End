@@ -9,13 +9,11 @@ type AssetModalProps = {
 };
 
 interface Asset {
-  asset_name: string;
-  category_name: string;
+  assetName: string;
+  categoryName: string;
 }
 
-interface AssetApiResponse {
-  allAsset: Asset[];
-}
+type AssetApiResponse = Asset[];
 
 function AssetModal({ closeAssetModal }: AssetModalProps) {
   const [formData, setFormData] = useState({
@@ -60,6 +58,7 @@ function AssetModal({ closeAssetModal }: AssetModalProps) {
       fees: DOMPurify.sanitize(formData.fees),
     };
 
+    console.log(sanitizedFormData);
     const addLine = await addBuyLine(sanitizedFormData);
     if (addLine) {
       setFormData({
@@ -128,16 +127,16 @@ function AssetModal({ closeAssetModal }: AssetModalProps) {
             {/* Add our assets to a dropdown list */}
             <datalist id="assetNameList">
               {assetDataList &&
-                assetDataList.allAsset
-                  .sort((a, b) => a.asset_name.localeCompare(b.asset_name))
-                  .map((asset: { asset_name: string }, index: number) => (
-                    <option key={index} value={asset.asset_name}>
-                      {asset.asset_name}
+                assetDataList
+                  .sort((a, b) => a.assetName.localeCompare(b.assetName))
+                  .map((asset: { assetName: string }, index: number) => (
+                    <option key={index} value={asset.assetName}>
+                      {asset.assetName}
                     </option>
                   ))}
             </datalist>
             <label htmlFor="asset_number" className="pt-4 pb-2 text-white w-full text-start">
-              Nombre de parts
+              Quantité
             </label>
             <input
               type="number"

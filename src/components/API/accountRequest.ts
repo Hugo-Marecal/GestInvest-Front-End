@@ -7,10 +7,9 @@ export const GetAccountInfo = async () => {
       method: 'GET',
       headers: header,
     });
-
     const dataGetAccountInfo = await response.json();
     if (!response.ok) {
-      throw new Error(dataGetAccountInfo.errorMessage);
+      throw new Error(dataGetAccountInfo.message);
     }
     return dataGetAccountInfo;
   } catch (error) {
@@ -31,12 +30,7 @@ export const sendNewAccountInfo = async (userData: UserData) => {
     const response = await fetch(`${BaseURL}account/`, {
       method: 'POST',
       headers: header,
-      body: JSON.stringify({
-        email: userData.email,
-        lastname: userData.last_name,
-        firstname: userData.first_name,
-        password: userData.password,
-      }),
+      body: JSON.stringify(userData),
     });
 
     const newData = await response.json();

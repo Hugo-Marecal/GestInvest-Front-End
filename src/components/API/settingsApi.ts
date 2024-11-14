@@ -8,5 +8,6 @@ export const header = {
 };
 
 // Server deploy
-export const BaseURL = 'https://gest-invest-back-end.vercel.app/api/';
+// export const BaseURL = 'https://gest-invest-back-end.vercel.app/api/';
 // export const BaseURL = 'http://localhost:5000/api/';
+export const BaseURL = 'http://localhost:8080/api/';
