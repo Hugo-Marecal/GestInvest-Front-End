@@ -28,7 +28,7 @@ interface UserData {
 export const sendNewAccountInfo = async (userData: UserData) => {
   try {
     const response = await fetch(`${BaseURL}account/`, {
-      method: 'POST',
+      method: 'PATCH',
       headers: header,
       body: JSON.stringify(userData),
     });
@@ -36,7 +36,6 @@ export const sendNewAccountInfo = async (userData: UserData) => {
     const newData = await response.json();
 
     if (response.ok) {
-      toast.success('Mise a jour reussi');
       if (newData.token) {
         localStorage.setItem('token', newData.token);
       }

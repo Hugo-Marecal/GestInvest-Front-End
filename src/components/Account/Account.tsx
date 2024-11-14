@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import { GetAccountInfo, sendNewAccountInfo } from '../API/accountRequest';
 
 interface UserData {
@@ -10,6 +12,7 @@ interface UserData {
 }
 
 function Account() {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData>({
     email: '',
     last_name: '',
@@ -43,9 +46,11 @@ function Account() {
 
     try {
       const newData = await sendNewAccountInfo(userData);
-      console.log(userData);
       if (newData) {
-        setUserData(newData);
+        toast.success('Mise a jour reussi');
+        setTimeout(() => {
+          navigate(0);
+        }, 3000);
       }
     } catch (error) {
       console.error('Erreur envoi des données:', error);

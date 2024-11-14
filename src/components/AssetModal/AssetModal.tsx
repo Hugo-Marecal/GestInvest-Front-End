@@ -58,7 +58,6 @@ function AssetModal({ closeAssetModal }: AssetModalProps) {
       fees: DOMPurify.sanitize(formData.fees),
     };
 
-    console.log(sanitizedFormData);
     const addLine = await addBuyLine(sanitizedFormData);
     if (addLine) {
       setFormData({
