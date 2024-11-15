@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GetAccountInfo, sendNewAccountInfo } from '../API/accountRequest';
 
 interface UserData {
@@ -86,12 +86,12 @@ function Account() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
         <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5">
-            <label className="p-4 text-xs md:text-sm font-bold" htmlFor="first_name">
+            <label className="py-4 pl-2 sm:p-4 text-xs md:text-sm font-bold" htmlFor="first_name">
               Prénom :
             </label>
           </div>
           <input
-            className=" pl-4 bg-transparent w-full rounded-r-lg"
+            className=" pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
             type="text"
             id="first_name"
             name="first_name"
@@ -101,12 +101,12 @@ function Account() {
         </div>
         <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5">
-            <label className="p-4 text-xs font-bold md:text-sm" htmlFor="last_name">
+            <label className="py-4 pl-2 sm:p-4 text-xs font-bold md:text-sm" htmlFor="last_name">
               Nom :
             </label>
           </div>
           <input
-            className=" pl-4 bg-transparent w-full rounded-r-lg"
+            className=" pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
             type="text"
             id="last_name"
             name="last_name"
@@ -116,35 +116,50 @@ function Account() {
         </div>
         <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5 ">
-            <label className="p-4 text-xs font-bold md:text-sm" htmlFor="email">
+            <label className="py-4 pl-2 sm:p-4 text-xs font-bold md:text-sm" htmlFor="email">
               E-mail :
             </label>
           </div>
-
-          <input
-            className="pl-4 bg-transparent w-full rounded-r-lg"
-            type="email"
-            id="email"
-            name="email"
-            placeholder={userData.email}
-            onChange={handleInputChange}
-          />
+          <div className="flex w-full items-center">
+            <input
+              className="pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
+              type="email"
+              id="email"
+              name="email"
+              placeholder={userData.email}
+              disabled
+            />
+            <Link
+              to="/edit-email"
+              className="h-full w-24 text-white border-l border-buttonColor hover:bg-buttonColor rounded-r-lg flex items-center justify-center"
+            >
+              Modifier
+            </Link>
+          </div>
         </div>
         <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5 ">
-            <label className="p-4 text-xs font-bold md:text-sm" htmlFor="password">
+            <label className="py-4 pl-2 sm:p-4 text-xs font-bold md:text-sm" htmlFor="password">
               Mot de passe :
             </label>
           </div>
 
-          <input
-            className="pl-4 bg-transparent w-full rounded-r-lg"
-            type="password"
-            id="password"
-            name="password"
-            onChange={handleInputChange}
-            placeholder="*************"
-          />
+          <div className="flex w-full items-center">
+            <input
+              className="pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
+              type="password"
+              id="password"
+              name="password"
+              onChange={handleInputChange}
+              placeholder="*************"
+            />
+            <Link
+              to="/edit-password"
+              className="h-full w-24 text-white border-l border-buttonColor hover:bg-buttonColor rounded-r-lg flex items-center justify-center"
+            >
+              Modifier
+            </Link>
+          </div>
         </div>
         {/* <div className="flex border border-white rounded-xl bg-white/10 w-full">
           <div className="flex border-r w-2/5 ">
