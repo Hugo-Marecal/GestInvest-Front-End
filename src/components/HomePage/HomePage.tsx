@@ -19,8 +19,13 @@ const HomePage = ({ isConnected, openModal }: HomePageProps) => {
     }, 1550);
 
     const params = new URLSearchParams(window.location.search);
+    const clearLocalStorage = params.get('clearLocalStorage');
     const successMessage = params.get('successMessage');
     const errorMessage = params.get('errorMessage');
+
+    if (clearLocalStorage) {
+      localStorage.removeItem('token');
+    }
 
     if (errorMessage) {
       toast.error(errorMessage);

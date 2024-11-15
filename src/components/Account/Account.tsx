@@ -130,7 +130,7 @@ function Account() {
               disabled
             />
             <Link
-              to="/edit-email"
+              to="/change-email"
               className="h-full w-24 text-white border-l border-buttonColor hover:bg-buttonColor rounded-r-lg flex items-center justify-center"
             >
               Modifier
@@ -146,15 +146,15 @@ function Account() {
 
           <div className="flex w-full items-center">
             <input
-              className="pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
+              className="pl-2 bg-transparent w-full rounded-r-lg sm:pl-4 h-full"
               type="password"
               id="password"
               name="password"
-              onChange={handleInputChange}
+              disabled
               placeholder="*************"
             />
             <Link
-              to="/edit-password"
+              to="/change-password"
               className="h-full w-24 text-white border-l border-buttonColor hover:bg-buttonColor rounded-r-lg flex items-center justify-center"
             >
               Modifier

@@ -180,7 +180,7 @@ function Dashboard() {
                   className="grid grid-cols-4 justify-between items-center text-center border-buttonColor rounded-3xl py-2 px-8 my-2 xl:my-4 border bg-[#ffffff0d]/10 text-xs md:text-sm lg:text-base"
                   key={asset.symbol}
                 >
-                  <NavLink to={`/AssetDetail/${asset.symbol}`} className="w-1/4 hidden 2xl:inline">
+                  <NavLink to={`/assetDetail/${asset.symbol}`} className="w-1/4 hidden 2xl:inline">
                     {asset.symbol}
                   </NavLink>
 

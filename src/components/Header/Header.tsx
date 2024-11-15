@@ -48,7 +48,7 @@ function Header({ isConnected, openModal }: HeaderProps) {
             className={({ isActive }) =>
               isActive ? 'underline underline-offset-8 flex justify-center' : 'flex justify-center'
             }
-            to="/Dashboard"
+            to="/dashboard"
             onClick={handleClick}
           >
             <li className="w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">
@@ -61,7 +61,7 @@ function Header({ isConnected, openModal }: HeaderProps) {
             className={({ isActive }) =>
               isActive ? 'underline underline-offset-8 flex justify-center' : 'flex justify-center'
             }
-            to="/Account"
+            to="/account"
             onClick={handleClick}
           >
             <li className="w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">Mon compte</li>
@@ -100,14 +100,14 @@ function Header({ isConnected, openModal }: HeaderProps) {
                 </li>
               </a> */}
               {isConnected && (
-                <NavLink to="/Dashboard" className={({ isActive }) => (isActive ? 'underline underline-offset-8' : '')}>
+                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'underline underline-offset-8' : '')}>
                   <li className=" transition hover:underline  hover:underline-offset-8 border-slate-900 hover:border-white cursor pointer">
                     Tableau de bord
                   </li>
                 </NavLink>
               )}
               {isConnected && (
-                <NavLink to="/Account" className={({ isActive }) => (isActive ? 'underline underline-offset-8' : '')}>
+                <NavLink to="/account" className={({ isActive }) => (isActive ? 'underline underline-offset-8' : '')}>
                   <li className=" transition  hover:underline hover:underline-offset-8 border-slate-900 hover:border-white cursor pointer">
                     Mon compte
                   </li>

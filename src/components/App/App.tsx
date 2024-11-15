@@ -13,6 +13,8 @@ import HomePage from '../HomePage/HomePage';
 import ModalLogin from '../ModalLogin/ModalLogin';
 import Page404 from '../Page404/Page404';
 import Tendances from '../Tendances/Tendances';
+import ChangeEmail from '../ChangeEmail/ChangeEmail';
+import ChangePassword from '../ChangePassword/ChangePassword';
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
@@ -31,6 +33,7 @@ function App() {
   const checkToken = () => {
     // Get the token from local storage
     const accessToken = localStorage.getItem('token');
+    setIsConnected(!!accessToken);
 
     // Check if the token exists
     if (accessToken) {
@@ -45,6 +48,16 @@ function App() {
   // Call checkToken on the initial load of the application
   useEffect(() => {
     checkToken();
+
+    const handleStorageChange = () => {
+      checkToken();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   type PrivateRouteProps = {
@@ -71,13 +84,13 @@ function App() {
         <Routes>
           {/* We pass the openModal function as a prop to the HomePage component and isConnected state to conditionally render the right button. */}
           <Route path="/" element={<HomePage openModal={openModal} isConnected={isConnected} />} />
-          <Route path="/Tendances" element={<Tendances />} />
+          <Route path="/tendances" element={<Tendances />} />
           <Route path="*" element={<Page404 />} />
           <Route path="/politique-de-confidentialite" element={<Politique />} />
           <Route path="/condition-utilisation" element={<Condition />} />
           {/* Protected Routes */}
           <Route
-            path="/Account"
+            path="/account"
             element={
               <PrivateRoute>
                 <Account />
@@ -85,7 +98,7 @@ function App() {
             }
           />
           <Route
-            path="/AssetDetail/:slug"
+            path="/assetDetail/:slug"
             element={
               <PrivateRoute>
                 <AssetDetail />
@@ -93,10 +106,26 @@ function App() {
             }
           />
           <Route
-            path="/Dashboard"
+            path="/dashboard"
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/change-email"
+            element={
+              <PrivateRoute>
+                <ChangeEmail />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/change-password"
+            element={
+              <PrivateRoute>
+                <ChangePassword />
               </PrivateRoute>
             }
           />
