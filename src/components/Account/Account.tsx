@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
-import { GetAccountInfo, sendNewAccountInfo } from '../API/accountRequest';
+import { deleteAccount, GetAccountInfo, sendNewAccountInfo } from '../API/accountRequest';
 
 interface UserData {
   email: string;
@@ -59,19 +59,25 @@ function Account() {
       console.error('Erreur envoi des données:', error);
     }
   };
-  // const handleDeleteAccount = async () => {
-  //   try {
-  //     // Appel à l'API pour supprimer le compte
-  //     await fetch(`${BaseURL}account/${userData.id}`, {
-  //       method: 'DELETE',
-  //       headers: header,
-  //     });
-  //     console.log('Compte supprimé avec succès');
-  //     // Vous pouvez également rediriger l'utilisateur vers une page de confirmation ou de déconnexion ici
-  //   } catch (error) {
-  //     console.error('Erreur lors de la suppression du compte :', error);
-  //   }
-  // };
+
+  const handleDeleteAccount = async () => {
+    try {
+      const isDeleted = await deleteAccount();
+
+      if (isDeleted) {
+        localStorage.removeItem('token');
+        toast.success('Account successfully deleted', {
+          autoClose: 2800,
+          pauseOnHover: false,
+        });
+        setTimeout(() => {
+          navigate(0);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la suppression du compte :', error);
+    }
+  };
 
   return (
     <div
@@ -164,21 +170,20 @@ function Account() {
             </Link>
           </div>
         </div>
-        <div className="flex justify-center gap-10">
+        <div className="flex justify-evenly gap-10">
+          <button
+            className="hover:bg-red-600 hover:border-red-600 border-buttonColor shadow-indigo-500/30 shadow-lg text-center text-sm mt-4 border text-white rounded-full px-3 py-2 lg:m-0 lg:my-8 lg:text-base lg:px-6 lg:py-2"
+            type="button"
+            onClick={handleDeleteAccount}
+          >
+            Supprimer le compte
+          </button>
           <button
             className="hover:bg-custom-purple border-buttonColor shadow-lg shadow-indigo-500/30 text-center text-sm mt-4 border text-white rounded-full px-3 py-2 lg:m-0 lg:my-8 lg:text-base lg:px-6 lg:py-2"
             type="submit"
           >
             Sauvegarder
           </button>
-          {/* Bouton pour supprimer le compte */}
-          {/* <button
-            className="hover:bg-custom-purple border-buttonColor shadow-lg shadow-indigo-500/30 text-center text-sm mt-4 border text-white rounded-full px-3 py-2 lg:m-0 lg:my-8 lg:text-base lg:px-6 lg:py-2"
-            type="button"
-            // onClick={handleDeleteAccount}
-          >
-            Supprimer le compte
-          </button> */}
         </div>
       </form>
     </div>

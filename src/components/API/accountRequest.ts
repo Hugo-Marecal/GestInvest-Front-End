@@ -49,3 +49,20 @@ export const sendNewAccountInfo = async (userData: UserData) => {
     throw error;
   }
 };
+
+export const deleteAccount = async () => {
+  try {
+    const response = await fetch(`${BaseURL}account/delete`, {
+      method: 'PATCH',
+      headers: header,
+    });
+    if (response.ok) {
+      console.log('Compte supprimé avec succès');
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Erreur lors de la suppression du compte :', error);
+    throw error;
+  }
+};
