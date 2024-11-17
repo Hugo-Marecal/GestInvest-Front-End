@@ -26,21 +26,17 @@ interface UserData {
 
 export const sendNewPassword = async (userData: UserData) => {
   try {
-    const response = await fetch(`${BaseURL}account/`, {
+    const response = await fetch(`${BaseURL}account/edit-password`, {
       method: 'PATCH',
       headers: header,
       body: JSON.stringify(userData),
     });
 
     const newData = await response.json();
-
     if (response.ok) {
-      if (newData.token) {
-        localStorage.setItem('token', newData.token);
-      }
       return newData;
     }
-    toast.error('Veuillez renseigner votre mot de passe pour sauvegarder les modifications');
+    toast.error(newData.message);
     console.error('Erreur de soumission des données');
     return null;
   } catch (error) {

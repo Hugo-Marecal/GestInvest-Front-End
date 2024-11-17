@@ -32,10 +32,8 @@ function ChangePassword() {
     try {
       const newData = await sendNewPassword(userData);
       if (newData) {
-        toast.success('Mise a jour reussi');
-        setTimeout(() => {
-          navigate('/account');
-        }, 3000);
+        toast.success(newData.message);
+        navigate('/account');
       }
     } catch (error) {
       console.error('Erreur envoi des données:', error);

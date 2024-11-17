@@ -47,7 +47,10 @@ function Account() {
     try {
       const newData = await sendNewAccountInfo(userData);
       if (newData) {
-        toast.success('Mise a jour reussi');
+        toast.success('Mise a jour reussi', {
+          autoClose: 2800,
+          pauseOnHover: false,
+        });
         setTimeout(() => {
           navigate(0);
         }, 3000);
@@ -161,25 +164,6 @@ function Account() {
             </Link>
           </div>
         </div>
-        {/* <div className="flex border border-white rounded-xl bg-white/10 w-full">
-          <div className="flex border-r w-2/5 ">
-            <label
-              className="p-4 text-xs font-bold md:text-sm"
-              htmlFor="confirmation"
-            >
-              Confirmation
-            </label>
-          </div>
-
-          <input
-            className="pl-4 bg-transparent w-full rounded-r-lg"
-            type="password"
-            id="confirmation"
-            name="confirmation"
-            placeholder="*************"
-            onChange={handleInputChange}
-          />
-        </div> */}
         <div className="flex justify-center gap-10">
           <button
             className="hover:bg-custom-purple border-buttonColor shadow-lg shadow-indigo-500/30 text-center text-sm mt-4 border text-white rounded-full px-3 py-2 lg:m-0 lg:my-8 lg:text-base lg:px-6 lg:py-2"
