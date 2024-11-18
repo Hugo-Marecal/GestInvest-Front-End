@@ -15,6 +15,8 @@ import Page404 from '../Page404/Page404';
 import Tendances from '../Tendances/Tendances';
 import ChangeEmail from '../ChangeEmail/ChangeEmail';
 import ChangePassword from '../ChangePassword/ChangePassword';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import ResetPassword from '../ResetPassword/ResetPassword';
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
@@ -84,6 +86,8 @@ function App() {
         <Routes>
           {/* We pass the openModal function as a prop to the HomePage component and isConnected state to conditionally render the right button. */}
           <Route path="/" element={<HomePage openModal={openModal} isConnected={isConnected} />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/tendances" element={<Tendances />} />
           <Route path="*" element={<Page404 />} />
           <Route path="/politique-de-confidentialite" element={<Politique />} />
