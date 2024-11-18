@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
-import { deleteAccount, GetAccountInfo, sendNewAccountInfo } from '../API/accountRequest';
+import { GetAccountInfo, sendNewAccountInfo } from '../API/accountRequest';
+import DeleteAccountModal from '../DeleteAccountModal/DeleteAccountModal';
 
 interface UserData {
   email: string;
@@ -13,12 +14,17 @@ interface UserData {
 
 function Account() {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
   const [userData, setUserData] = useState<UserData>({
     email: '',
     last_name: '',
     first_name: '',
     password: '',
   });
+
+  const closeDeleteAccountModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     const fetchAccountInfo = async () => {
@@ -57,25 +63,6 @@ function Account() {
       }
     } catch (error) {
       console.error('Erreur envoi des données:', error);
-    }
-  };
-
-  const handleDeleteAccount = async () => {
-    try {
-      const isDeleted = await deleteAccount();
-
-      if (isDeleted) {
-        localStorage.removeItem('token');
-        toast.success('Account successfully deleted', {
-          autoClose: 2800,
-          pauseOnHover: false,
-        });
-        setTimeout(() => {
-          navigate(0);
-        }, 3000);
-      }
-    } catch (error) {
-      console.error('Erreur lors de la suppression du compte :', error);
     }
   };
 
@@ -174,10 +161,17 @@ function Account() {
           <button
             className="hover:bg-red-600 hover:border-red-600 border-buttonColor shadow-indigo-500/30 shadow-lg text-center text-sm mt-4 border text-white rounded-full px-3 py-2 lg:m-0 lg:my-8 lg:text-base lg:px-6 lg:py-2"
             type="button"
-            onClick={handleDeleteAccount}
+            onClick={() => {
+              setShowModal(true);
+            }}
           >
             Supprimer le compte
           </button>
+          {showModal && (
+            <div>
+              <DeleteAccountModal closeDeleteAccountModal={closeDeleteAccountModal} />
+            </div>
+          )}
           <button
             className="hover:bg-custom-purple border-buttonColor shadow-lg shadow-indigo-500/30 text-center text-sm mt-4 border text-white rounded-full px-3 py-2 lg:m-0 lg:my-8 lg:text-base lg:px-6 lg:py-2"
             type="submit"
