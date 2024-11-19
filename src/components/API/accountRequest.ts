@@ -22,7 +22,6 @@ interface UserData {
   email: string;
   last_name: string;
   first_name: string;
-  password: string;
 }
 
 export const sendNewAccountInfo = async (userData: UserData) => {
@@ -41,7 +40,8 @@ export const sendNewAccountInfo = async (userData: UserData) => {
       }
       return newData;
     }
-    toast.error('Veuillez renseigner votre mot de passe pour sauvegarder les modifications');
+    console.log(newData);
+    toast.error(newData.message);
     console.error('Erreur de soumission des données');
     return null;
   } catch (error) {

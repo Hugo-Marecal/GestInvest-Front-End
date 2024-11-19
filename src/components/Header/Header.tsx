@@ -38,11 +38,6 @@ function Header({ isConnected, openModal }: HeaderProps) {
         >
           <li className="w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">Accueil</li>
         </NavLink>
-        {/* <a className="flex justify-center" href="/Tendances">
-          <li className=" w-2/3 my-4 py-4 text-md border-slate-800 hover:bg-slate-800 hover:rounded">
-            Tendances
-          </li>
-        </a> */}
         {isConnected && (
           <NavLink
             className={({ isActive }) =>

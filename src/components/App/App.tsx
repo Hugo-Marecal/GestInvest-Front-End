@@ -12,7 +12,6 @@ import Header from '../Header/Header';
 import HomePage from '../HomePage/HomePage';
 import ModalLogin from '../ModalLogin/ModalLogin';
 import Page404 from '../Page404/Page404';
-import Tendances from '../Tendances/Tendances';
 import ChangeEmail from '../ChangeEmail/ChangeEmail';
 import ChangePassword from '../ChangePassword/ChangePassword';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
@@ -88,7 +87,6 @@ function App() {
           <Route path="/" element={<HomePage openModal={openModal} isConnected={isConnected} />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/tendances" element={<Tendances />} />
           <Route path="*" element={<Page404 />} />
           <Route path="/politique-de-confidentialite" element={<Politique />} />
           <Route path="/condition-utilisation" element={<Condition />} />

@@ -24,7 +24,7 @@ function ResetPassword() {
       try {
         const isValidToken = token ? await verifyToken(token) : null;
         if (!isValidToken) {
-          toast.error('Not authorized');
+          toast.error('Accès non autorisé');
           navigate('/');
         }
         setLoading(false);
@@ -37,7 +37,7 @@ function ResetPassword() {
     if (token) {
       validateToken();
     } else {
-      toast.error('Not authorized');
+      toast.error('Accès non autorisé');
       navigate('/');
     }
   }, [token, navigate]);

@@ -17,7 +17,7 @@ function DeleteAccountModal({ closeDeleteAccountModal }: DeleteAccountModalProps
       if (isDeleted) {
         closeDeleteAccountModal();
         localStorage.removeItem('token');
-        toast.success('Account successfully deleted', {
+        toast.success('Compte supprimé avec succès', {
           autoClose: 2800,
           pauseOnHover: false,
         });

@@ -67,7 +67,7 @@ function AssetModal({ closeAssetModal }: AssetModalProps) {
         date: '',
         fees: '',
       });
-      toast.success('Ajout réalisé avec succès');
+      toast.success("Ajout de votre ligne d'achat réalisé avec succès");
     }
   }
 
@@ -92,7 +92,7 @@ function AssetModal({ closeAssetModal }: AssetModalProps) {
         date: '',
         fees: '',
       });
-      toast.success('Ajout réalisé avec succès');
+      toast.success('Ajout de votre ligne de vente réalisé avec succès');
     }
   }
 

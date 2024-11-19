@@ -9,7 +9,6 @@ interface UserData {
   email: string;
   last_name: string;
   first_name: string;
-  password: string;
 }
 
 function Account() {
@@ -19,7 +18,6 @@ function Account() {
     email: '',
     last_name: '',
     first_name: '',
-    password: '',
   });
 
   const closeDeleteAccountModal = () => {
@@ -49,6 +47,7 @@ function Account() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(userData);
 
     try {
       const newData = await sendNewAccountInfo(userData);
@@ -91,6 +90,7 @@ function Account() {
             type="text"
             id="first_name"
             name="first_name"
+            required
             placeholder={userData.first_name ? userData.first_name : 'prénom'}
             onChange={handleInputChange}
           />
@@ -106,6 +106,7 @@ function Account() {
             type="text"
             id="last_name"
             name="last_name"
+            required
             placeholder={userData.last_name ? userData.last_name : 'nom'}
             onChange={handleInputChange}
           />

@@ -65,5 +65,3 @@ export const getAssetList = async () => {
     throw error;
   }
 };
-
-// export default { addBuyLine, addSellLine, getAssetList };
