@@ -12,7 +12,6 @@ import Header from '../Header/Header';
 import HomePage from '../HomePage/HomePage';
 import ModalLogin from '../ModalLogin/ModalLogin';
 import Page404 from '../Page404/Page404';
-import Tendances from '../Tendances/Tendances';
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
@@ -71,7 +70,6 @@ function App() {
         <Routes>
           {/* We pass the openModal function as a prop to the HomePage component and isConnected state to conditionally render the right button. */}
           <Route path="/" element={<HomePage openModal={openModal} isConnected={isConnected} />} />
-          <Route path="/Tendances" element={<Tendances />} />
           <Route path="*" element={<Page404 />} />
           <Route path="/politique-de-confidentialite" element={<Politique />} />
           <Route path="/condition-utilisation" element={<Condition />} />
