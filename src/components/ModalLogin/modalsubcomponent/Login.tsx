@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { login } from '../../API/authentificationRequest';
 
 interface LoginFormProps {
@@ -53,9 +54,15 @@ const Login = ({ closeModal }: LoginFormProps) => {
           value={inputPassword}
           onChange={(e) => setInputPassword(e.target.value)}
         />
-
+        <Link
+          to="/forgot-password"
+          className="pt-4 pb-2 text-gray-400 hover:text-buttonColor hover:underline text-xs w-full"
+          onClick={closeModal}
+        >
+          Mot de passe oublié ?
+        </Link>
         <button
-          className="w-2/4 valid-button p-2 mt-8 hover:bg-custom-purple text-white rounded-xl shadow-lg shadow-indigo-500/30 border border-buttonColor"
+          className="w-2/4 valid-button p-2 mt-4 hover:bg-custom-purple text-white rounded-xl shadow-lg shadow-indigo-500/30 border border-buttonColor"
           type="submit"
         >
           Se connecter

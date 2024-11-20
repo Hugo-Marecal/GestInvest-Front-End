@@ -11,14 +11,12 @@ export const register = async (email: string, password: string, confirmation: st
       body: JSON.stringify({ email, password, confirmation }),
     });
     const data = await response.json();
-    if (!response.ok) {
-      toast.error(data.errorMessage);
-      throw new Error(data.errorMessage);
+    if (response.ok) {
+      toast.success(data.message);
     } else {
-      toast.success(data.successMessage);
+      toast.error(data.message);
+      throw new Error(data.message);
     }
-    // Display an alert for successful registration
-    return data;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -42,8 +40,8 @@ export const login = async (email: string, password: string) => {
       localStorage.setItem('token', data.token);
       toast.success('Vous êtes maintenant connecté');
     } else {
-      toast.error(data.errorMessage);
-      throw new Error(data.errorMessage);
+      toast.error(data.message);
+      throw new Error(data.message);
     }
   } catch (error) {
     if (error instanceof Error) {

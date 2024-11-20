@@ -19,50 +19,28 @@ export const GetAccountInfo = async () => {
 };
 
 interface UserData {
-  email: string;
-  last_name: string;
-  first_name: string;
+  currentPassword: string;
+  newPassword: string;
+  confirmation: string;
 }
 
-export const sendNewAccountInfo = async (userData: UserData) => {
+export const sendNewPassword = async (userData: UserData) => {
   try {
-    const response = await fetch(`${BaseURL}account/`, {
+    const response = await fetch(`${BaseURL}account/edit-password`, {
       method: 'PATCH',
       headers: header,
       body: JSON.stringify(userData),
     });
 
     const newData = await response.json();
-
     if (response.ok) {
-      if (newData.token) {
-        localStorage.setItem('token', newData.token);
-      }
       return newData;
     }
-    console.log(newData);
     toast.error(newData.message);
     console.error('Erreur de soumission des données');
     return null;
   } catch (error) {
     console.error('Error data not send', error);
-    throw error;
-  }
-};
-
-export const deleteAccount = async () => {
-  try {
-    const response = await fetch(`${BaseURL}account/delete`, {
-      method: 'PATCH',
-      headers: header,
-    });
-    if (response.ok) {
-      console.log('Compte supprimé avec succès');
-      return true;
-    }
-    return false;
-  } catch (error) {
-    console.error('Erreur lors de la suppression du compte :', error);
     throw error;
   }
 };

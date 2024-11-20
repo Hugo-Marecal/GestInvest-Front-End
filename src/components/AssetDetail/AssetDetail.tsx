@@ -34,7 +34,7 @@ function AssetDetail() {
     async function assetDetail() {
       try {
         const data = await getAssetDetailData(slug);
-        setAssetDetailData(data.assetDetailsCalculated);
+        setAssetDetailData(data);
       } catch (error) {
         console.error('Erreur de récupération des données', error);
       }
