@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { sendNewPassword } from '../API/ChangePasswordRequest';
 
 interface UserData {
@@ -12,6 +13,10 @@ interface UserData {
 
 function ChangePassword() {
   const navigate = useNavigate();
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [userData, setUserData] = useState<UserData>({
     currentPassword: '',
     newPassword: '',
@@ -56,7 +61,7 @@ function ChangePassword() {
         Modifier votre Mot de Passe
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
-        <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
+        <div className=" relative flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5 ">
             <label className="py-4 pl-2 sm:p-4 text-xs font-bold md:text-sm" htmlFor="currentPassword">
               Mot de passe actuel :
@@ -64,14 +69,25 @@ function ChangePassword() {
           </div>
           <input
             className="pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
-            type="password"
+            type={showCurrentPassword ? 'text' : 'password'}
             id="currentPassword"
             name="currentPassword"
             placeholder="*************"
             onChange={handleInputChange}
           />
+          <button
+            type="button"
+            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 focus:outline-none"
+          >
+            {showCurrentPassword ? (
+              <LuEyeOff className="text-gray-500" size={20} />
+            ) : (
+              <LuEye className="text-gray-500" size={20} />
+            )}
+          </button>
         </div>
-        <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
+        <div className="relative flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5 ">
             <label className="py-4 pl-2 sm:p-4 text-xs font-bold md:text-sm" htmlFor="newPassword">
               Nouveau mot de passe :
@@ -79,14 +95,25 @@ function ChangePassword() {
           </div>
           <input
             className="pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
-            type="password"
+            type={showNewPassword ? 'text' : 'password'}
             id="newPassword"
             name="newPassword"
             placeholder="*************"
             onChange={handleInputChange}
           />
+          <button
+            type="button"
+            onClick={() => setShowNewPassword(!showNewPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 focus:outline-none"
+          >
+            {showNewPassword ? (
+              <LuEyeOff className="text-gray-500" size={20} />
+            ) : (
+              <LuEye className="text-gray-500" size={20} />
+            )}
+          </button>
         </div>
-        <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
+        <div className="relative flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5 ">
             <label className="py-4 pl-2 sm:p-4 text-xs font-bold md:text-sm" htmlFor="confirmation">
               Confirmation :
@@ -94,12 +121,23 @@ function ChangePassword() {
           </div>
           <input
             className="pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
-            type="password"
+            type={showConfirmPassword ? 'text' : 'password'}
             id="confirmation"
             name="confirmation"
             placeholder="*************"
             onChange={handleInputChange}
           />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 focus:outline-none"
+          >
+            {showConfirmPassword ? (
+              <LuEyeOff className="text-gray-500" size={20} />
+            ) : (
+              <LuEye className="text-gray-500" size={20} />
+            )}
+          </button>
         </div>
         <div className="flex justify-center gap-10">
           <button

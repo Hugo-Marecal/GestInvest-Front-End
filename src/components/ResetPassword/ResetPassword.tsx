@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { resetPassword, verifyToken } from '../API/forgotPasswordRequest';
 
@@ -11,6 +12,9 @@ interface UserData {
 
 function ResetPassword() {
   const [loading, setLoading] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const query = new URLSearchParams(useLocation().search);
   const token = query.get('token');
   const navigate = useNavigate();
@@ -83,7 +87,7 @@ function ResetPassword() {
       </Helmet>
       <h2 className="text-lg uppercase font-bold p-10 sm:text-xl md:text-2xl xl:text-3xl">Gestion du profil</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
-        <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
+        <div className=" relative flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5">
             <label className="py-4 pl-2 sm:p-4 text-xs md:text-sm font-bold" htmlFor="password">
               Password :
@@ -91,14 +95,25 @@ function ResetPassword() {
           </div>
           <input
             className=" pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             id="password"
             name="password"
             placeholder="**********"
             onChange={handleInputChange}
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 focus:outline-none"
+          >
+            {showPassword ? (
+              <LuEyeOff className="text-gray-500" size={20} />
+            ) : (
+              <LuEye className="text-gray-500" size={20} />
+            )}
+          </button>
         </div>
-        <div className="flex border border-buttonColor rounded-xl bg-white/10 w-full">
+        <div className="relative flex border border-buttonColor rounded-xl bg-white/10 w-full">
           <div className="flex border-r border-buttonColor w-2/5">
             <label className="py-4 pl-2 sm:p-4 text-xs font-bold md:text-sm" htmlFor="confirmation">
               Confirmation :
@@ -106,12 +121,23 @@ function ResetPassword() {
           </div>
           <input
             className=" pl-2 bg-transparent w-full rounded-r-lg sm:pl-4"
-            type="password"
+            type={showConfirmPassword ? 'text' : 'password'}
             id="confirmation"
             name="confirmation"
             placeholder="**********"
             onChange={handleInputChange}
           />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 focus:outline-none"
+          >
+            {showConfirmPassword ? (
+              <LuEyeOff className="text-gray-500" size={20} />
+            ) : (
+              <LuEye className="text-gray-500" size={20} />
+            )}
+          </button>
         </div>
 
         <div className="flex justify-evenly gap-10">

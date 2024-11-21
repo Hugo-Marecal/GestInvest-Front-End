@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { login } from '../../API/authentificationRequest';
 
 interface LoginFormProps {
@@ -9,6 +10,7 @@ interface LoginFormProps {
 const Login = ({ closeModal }: LoginFormProps) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLoginSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,7 +29,7 @@ const Login = ({ closeModal }: LoginFormProps) => {
 
   return (
     <form onSubmit={handleLoginSubmit} className="login">
-      <div className="flex flex-col justify-center items-center py-4 ">
+      <div className=" relative flex flex-col justify-center items-center py-4 w-full ">
         <label className="pt-2 pb-2 text-white w-full text-start" htmlFor="login-email">
           E-mail
         </label>
@@ -46,7 +48,7 @@ const Login = ({ closeModal }: LoginFormProps) => {
         </label>
         <input
           className="rounded-md p-1 w-full bg-violet-300 focus:outline-none focus:ring-2 focus:ring-buttonColor placeholder-gray-900 placeholder-opacity-60"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           id="login-password"
           name="login-password"
           placeholder="*********"
@@ -54,6 +56,17 @@ const Login = ({ closeModal }: LoginFormProps) => {
           value={inputPassword}
           onChange={(e) => setInputPassword(e.target.value)}
         />
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-3 top-2/4 focus:outline-none"
+        >
+          {showPassword ? (
+            <LuEyeOff className="text-gray-500" size={20} />
+          ) : (
+            <LuEye className="text-gray-500" size={20} />
+          )}
+        </button>
         <Link
           to="/forgot-password"
           className="pt-4 pb-2 text-gray-400 hover:text-buttonColor hover:underline text-xs w-full"
@@ -62,7 +75,7 @@ const Login = ({ closeModal }: LoginFormProps) => {
           Mot de passe oublié ?
         </Link>
         <button
-          className="w-2/4 valid-button p-2 mt-4 hover:bg-custom-purple text-white rounded-xl shadow-lg shadow-indigo-500/30 border border-buttonColor"
+          className="w-3/5 valid-button p-2 mt-4 hover:bg-custom-purple text-white rounded-xl shadow-lg shadow-indigo-500/30 border border-buttonColor"
           type="submit"
         >
           Se connecter
