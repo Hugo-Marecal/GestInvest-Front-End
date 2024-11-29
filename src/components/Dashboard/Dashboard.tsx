@@ -30,6 +30,7 @@ interface AssetUserInformation {
 }
 
 function Dashboard() {
+  const [isLoading, setIsLoading] = useState(false);
   const [dashboardData, setDashboardData] = useState<DashboardProps | null>(null);
 
   // The State of the showModal is used to open or close the buy/sell modal
@@ -37,8 +38,10 @@ function Dashboard() {
 
   useEffect(() => {
     const fetchDashboardData = async () => {
+      setIsLoading(true);
       try {
         const data = await GetDashboard();
+        setIsLoading(false);
         setDashboardData(data);
       } catch (error) {
         console.error('Error fetching dashboard:', error);
@@ -80,6 +83,10 @@ function Dashboard() {
     }
     return 'red';
   };
+
+  if (isLoading) {
+    return <div className="flex justify-center items-center text-5xl h-screen">Loading...</div>;
+  }
 
   return (
     <>
